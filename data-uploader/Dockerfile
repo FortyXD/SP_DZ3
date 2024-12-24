@@ -9,7 +9,6 @@ WORKDIR /app
 
 COPY . /app
 
-# Ставим необходимые Python-библиотеки
 RUN pip install --no-cache-dir boto3
 
 CMD ["python", "uploader.py"]
