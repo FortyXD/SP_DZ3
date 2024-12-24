@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web UI
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=admin123
+      - MINIO_STORAGE_LIMIT=500MB
+    volumes:
+      - minio-data:/data
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: "0.5"
+
+  data-uploader:
+    build:
+      context: ./data-uploader
+    depends_on:
+      - minio
+
+volumes:
+  minio-data:
+    driver_opts:
+      type: none
+      o: bind
+      device: ./dir
