@@ -20,11 +20,4 @@
 
 В консоли будет показыватся ошибка с этим файлом если она есть. Если он загружен. то выведит ```Uploaded data-1.jpg```
 
-
-### Ошибки
-
-```data-uploader-1  | Bucket already exists or failed: An error occurred (BucketAlreadyOwnedByYou) when calling the CreateBucket operation: Your previous request to create the named bucket succeeded and you already own it.``` - Бакет уже создан
-
-```Failed to upload data-4.jpg: [Errno 2] No such file or directory: 'data-4.jpg'``` - Кончились или нет файла
-
-``````
+Ошибки выводятся в логи.
