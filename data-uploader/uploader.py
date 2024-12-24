@@ -2,7 +2,6 @@ import boto3
 import os
 from time import sleep
 
-# Данные подключения к MiniO
 S3_ENDPOINT = "http://minio:9000"
 ACCESS_KEY = "admin"
 SECRET_KEY = "admin123"
@@ -22,10 +21,13 @@ try:
     print(f"Bucket {BUCKET_NAME} created!")
 except Exception as e:
     print(f"Bucket already exists or failed: {e}")
+# Загрузка файлов
+
 
 i = 1
 while True:
     file_name = f"data-{i}.jpg"
+
     try:
         s3.upload_file(file_name, BUCKET_NAME, file_name)
         print(f"Uploaded {file_name}")
